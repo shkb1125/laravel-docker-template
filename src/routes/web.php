@@ -17,6 +17,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/todo', function () {
-    echo 'Hello World!';
-});
+Route::get('/todo', 'TodoController@index');
