@@ -32,6 +32,7 @@
         </nav>
         <main class="py-4">
             <div class="container">
+                {{-- yieldディレクティブ --}}
                 @yield('content')
             </div>
         </main>
