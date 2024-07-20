@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Todo;
+
 // use Illuminate\Support\Facades\DB;
 
 class TodoController extends Controller
@@ -51,5 +52,13 @@ class TodoController extends Controller
 
         // redirect()関数に定義されているroute()関数を使用している、引数：名前定義したルート
         return redirect()->route('todo.index');
+    }
+
+    public function show($id)
+    {
+        $model = new Todo();
+        $todo = $model->find($id);
+
+        return view('todo.show', ['todo' => $todo]);
     }
 }

@@ -1,4 +1,6 @@
+{{-- extendsディレクティブ --}}
 @extends('layouts.base')
+{{-- sectionディレクティブ --}}
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -16,6 +18,7 @@
                             {{-- カラム名で取得できるのは、Todoモデルのオブジェクトのcontentプロパティを呼び出しているから --}}
                             {{-- @dd($todo) --}}
                             <span class="col-9">{{ $todo->content }}</span>
+                            <a href="{{ route('todo.show', $todo->id) }}" class="btn btn-info ml-3">詳細</a>
                         </div>
                     @endforeach
                 </div>
