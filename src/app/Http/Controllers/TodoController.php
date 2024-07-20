@@ -46,13 +46,10 @@ class TodoController extends Controller
         今回は配列で'_token'と'content'の値を受け取っている
         */
         $inputs = $request->all();
-        // 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
-        // $todo = new Todo();
-        // 2. Todoインスタンスのカラム名のプロパティに保存したい値を代入
-        // $todo->content = $inputs['content']; // 修正前
-        // 2. Todoインスタンスのfill()を実行、引数に用意された配列の値をモデルのプロパティに代入
+
+        // Todoインスタンスのfill()を実行、引数に用意された配列の値をモデルのプロパティに代入
         // $todo->fill($inputs);
-        // 3. Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
+        // Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
         // DB::enableQueryLog();
         // $todo->save();
         // dd(DB::getQueryLog());
@@ -72,5 +69,12 @@ class TodoController extends Controller
         $todo = $this->todo->find($id);
 
         return view('todo.show', ['todo' => $todo]);
+    }
+
+    public function edit($id)
+    {
+        $todo = $this->todo->find($id);
+
+        return view('todo.edit', ['todo' => $todo]);
     }
 }
