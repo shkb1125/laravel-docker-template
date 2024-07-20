@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use App\Http\Requests\TodoRequest;
 use App\Todo;
 
 // use Illuminate\Support\Facades\DB;
@@ -39,7 +40,7 @@ class TodoController extends Controller
     }
 
     // 引数：Requestクラスで受け取ったデータをインスタンス化して$requestに格納
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         /*
         requestクラスのall()メソッドを使用してリクエストを配列で受け取る
@@ -78,7 +79,7 @@ class TodoController extends Controller
         return view('todo.edit', ['todo' => $todo]);
     }
 
-    public function update(Request $request, $id)
+    public function update(TodoRequest $request, $id)
     {
         $inputs = $request->all();
         $todo = $this->todo->find($id);
