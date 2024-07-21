@@ -10,10 +10,18 @@
                     <h5 class="card-title">{{ $todo->content }}</h5>
                     <p class="card-text">作成日時：{{ $todo->created_at }}</p>
                 </div>
-                {{-- 編集ボタン --}}
                 <div class="row">
+                    {{-- 編集ボタン --}}
                     <div class="col-auto">
                         <a href="{{ route('todo.edit', $todo->id) }}" class="btn btn-info">編集する</a>
+                    </div>
+                    <div class="col-auto">
+                        {{-- 削除ボタン --}}
+                        <form method="POST" action="{{ route('todo.delete', $todo->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">削除する</button>
+                        </form>
                     </div>
                 </div>
             </div>
