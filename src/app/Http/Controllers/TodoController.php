@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TodoRequest;
 use App\Todo;
 
-// use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class TodoController extends Controller
 {
@@ -74,7 +74,10 @@ class TodoController extends Controller
 
     public function edit($id)
     {
+        // DB::enableQueryLog();
+        // sql：select * from `todos` where `todos`.`id` = ? and `todos`.`deleted_at` is null limit 1
         $todo = $this->todo->find($id);
+        // dd(DB::getQueryLog());
 
         return view('todo.edit', ['todo' => $todo]);
     }
@@ -82,8 +85,10 @@ class TodoController extends Controller
     public function update(TodoRequest $request, $id)
     {
         $inputs = $request->all();
+        // dd($inputs); // '_token','_method','content'
         $todo = $this->todo->find($id);
         $todo->fill($inputs)->save();
+        // dd($todo->fill($inputs)->save());boolean
 
         return redirect()->route('todo.show', $todo->id);
     }
